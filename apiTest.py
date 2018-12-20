@@ -1,5 +1,7 @@
 import libpackage
 from libpackage import libmodule
 
-libmodule.apiCall1()
-libmodule.apiCall2()
+libmodule.apiCallTest1()
+libmodule.apiCallTest2()
+#libmodule.queryGoogle()
+libmodule.sendEmail()
