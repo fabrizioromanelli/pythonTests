@@ -37,7 +37,8 @@ def queryGoogle():
 # Send and email.
 #
 def sendEmail():
-	serverName = 'in-v3.mailjet.com'
+	username   = 'fabrizio.romanelli@gmail.com'
+	serverName = 'smtp.gmail.com'
 	fromaddr   = 'pilot@mailjet.com'
 
 	toaddrs    = ['fabrizioromanelli@gmail.com']
@@ -49,21 +50,18 @@ def sendEmail():
 
 	msg = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
 
-	try:
-		server = smtplib.SMTP(serverName, 587)
-		print("Starttls the server...")
-		server.starttls()
-		print("Ehloing the server...")
-		server.ehlo("example.com")
-		#print("Logging in to the server.")
-		#gPass = raw_input("Please provide your password >> ")
-		server.login(username, password)
-
-		server.mail(fromaddr)
-		server.rcpt(toaddrs[0])
-		server.data(msg)
+	#try:
+	server = smtplib.SMTP_SSL(serverName, 465)
+	print("Ehloing the server...")
+	server.ehlo("example.com")
+	#gPass = raw_input("Please provide your password >> ")
+	print("Logging in to the server.")
+	server.login(username, password)
+	server.mail(fromaddr)
+	server.rcpt(toaddrs[0])
+	server.data(msg)
 #		server.sendmail("jimmy@ridimmi.com", toaddrs[0], msg)
-		server.quit()
-		print("Email sent!")
-	except:
-		print("Something went wrong...")
+	server.quit()
+	print("Email sent!")
+	#except:
+	#	print("Something went wrong...")
